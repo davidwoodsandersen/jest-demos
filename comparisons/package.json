@@ -4,9 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:jest": "time ./node_modules/.bin/jest modules/",
-    "test:jasmine": "time node ./node_modules/jasmine/bin/jasmine.js ./spec/*.js",
-    "test:mocha": "time ./node_modules/mocha/bin/mocha"
+    "jest": "time ./node_modules/.bin/jest modules/",
+    "jest:fibonacci": "time ./node_modules/.bin/jest modules/fibonacci.test.js",
+    "jest:dom": "time ./node_modules/.bin/jest modules/dom.test.js",
+    "jasmine": "time node ./node_modules/jasmine/bin/jasmine.js ./spec/*.js",
+    "jasmine:fibonacci": "time node ./node_modules/jasmine/bin/jasmine.js ./spec/fibonacci.js",
+    "jasmine:dom": "time node ./node_modules/jasmine/bin/jasmine.js ./spec/dom.js",
+    "mocha": "time ./node_modules/mocha/bin/mocha",
+    "mocha:fibonacci": "time ./node_modules/mocha/bin/mocha ./test/fibonacci.js",
+    "mocha:dom": "time ./node_modules/mocha/bin/mocha ./test/dom.js"
   },
   "author": "",
   "license": "ISC",

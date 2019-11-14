@@ -1,6 +1,6 @@
 module.exports = class Dom {
   constructor(dom) {
-    this.document = dom.document;
+    this.document = dom.window.document;
   }
 
   prependNodes(n) {
