@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "compare": "node ./utils/compare.js",
     "jest": "time ./node_modules/.bin/jest modules/",
     "jest:fibonacci": "time ./node_modules/.bin/jest modules/fibonacci.test.js",
     "jest:dom": "time ./node_modules/.bin/jest modules/dom.test.js",
@@ -18,10 +19,12 @@
   "license": "ISC",
   "devDependencies": {
     "assert": "^2.0.0",
+    "cli-chart": "^0.3.1",
     "jasmine": "^3.5.0",
     "jest": "^24.9.0",
     "jest-cli": "^24.9.0",
     "jsdom": "^15.2.1",
-    "mocha": "^6.2.2"
+    "mocha": "^6.2.2",
+    "shelljs": "^0.8.3"
   }
 }
