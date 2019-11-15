@@ -1,4 +1,5 @@
 const shell = require('shelljs');
+const reports = require('./reports');
 
 function getTestResults(framework) {
   console.log(`Running ${framework} tests...`);
@@ -33,17 +34,16 @@ function parseTimeValues(testResults) {
   };
 }
 
-function main() {
-  var jestResults = getTestResults('jest');
-  var jasmineResults = getTestResults('jasmine');
-  var mochaResults = getTestResults('mocha');
+function getAllResults() {
+  return {
+    jest: parseTimeValues(getTestResults('jest')),
+    jasmine: parseTimeValues(getTestResults('jasmine')),
+    mocha: parseTimeValues(getTestResults('mocha'))
+  };
+}
 
-  console.log('Jest results:');
-  console.log(parseTimeValues(jestResults));
-  console.log('Jasmine results:');
-  console.log(parseTimeValues(jasmineResults));
-  console.log('Mocha results:');
-  console.log(parseTimeValues(mochaResults));
+function main() {
+  reports.generate(getAllResults());
 }
 
 main();
