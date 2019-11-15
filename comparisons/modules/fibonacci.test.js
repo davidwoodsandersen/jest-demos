@@ -1,15 +1,16 @@
 const fibonacci = require('./fibonacci');
+const testValues = require('../test-values').fibonacci;
 
 describe('Jest: Recursive Fibonacci', () => {
   it('Recursive Fibonacci (1)', () => {
-    expect(fibonacci(45)).toEqual(1836311903);
+    fibonacci(testValues.number);
   });
 
   it('Recursive Fibonacci (2)', () => {
-    expect(fibonacci(45)).toEqual(1836311903);
+    fibonacci(testValues.number);
   });
 
   it('Recursive Fibonacci (3)', () => {
-    expect(fibonacci(45)).toEqual(1836311903);
+    fibonacci(testValues.number);
   });
 });

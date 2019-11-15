@@ -1,0 +1,10 @@
+{
+  "dom": {
+    "prependNodes": 200000,
+    "appendNodes": 200000,
+    "haystackSize": 20000
+  },
+  "fibonacci": {
+    "number": 45
+  }
+}
