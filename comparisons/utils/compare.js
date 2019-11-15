@@ -1,9 +1,10 @@
 const shell = require('shelljs');
 const reports = require('./reports');
 
-function getTestResults(framework) {
-  console.log(`Running ${framework} tests...`);
-  return shell.exec(`npm run ${framework}`, { silent: true }).stderr;
+function getTestResults(framework, testGroup) {
+  var command = testGroup ? `${framework}:${testGroup}` : framework;
+  console.log(`Running ${command} tests...`);
+  return shell.exec(`npm run ${command}`, { silent: true }).stderr;
 }
 
 function parseTimeString(str) {
@@ -46,23 +47,23 @@ function getAverage(results) {
   return averaged;
 }
 
-function getAllResults() {
+function getAllResults(testGroup) {
   return {
-    jest: parseTimeValues(getTestResults('jest')),
-    jasmine: parseTimeValues(getTestResults('jasmine')),
-    mocha: parseTimeValues(getTestResults('mocha'))
+    jest: parseTimeValues(getTestResults('jest', testGroup)),
+    jasmine: parseTimeValues(getTestResults('jasmine', testGroup)),
+    mocha: parseTimeValues(getTestResults('mocha', testGroup))
   };
 }
 
-function getAverageResults(runCount) {
+function getAverageResults(runCount, testGroup) {
   var jestResults = [];
   var jasmineResults = [];
   var mochaResults = [];
 
   for (var i = 0; i < runCount; i++) {
-    jestResults.push(parseTimeValues(getTestResults('jest')));
-    jasmineResults.push(parseTimeValues(getTestResults('jasmine')));
-    mochaResults.push(parseTimeValues(getTestResults('mocha')));
+    jestResults.push(parseTimeValues(getTestResults('jest', testGroup)));
+    jasmineResults.push(parseTimeValues(getTestResults('jasmine', testGroup)));
+    mochaResults.push(parseTimeValues(getTestResults('mocha', testGroup)));
   }
 
   return {
@@ -74,11 +75,12 @@ function getAverageResults(runCount) {
 
 function main() {
   var runArg = Number(process.argv.slice(2)[0]);
+  var testGroupArg = process.argv.slice(2)[1];
 
   if (runArg && runArg > 1) {
-    reports.generate(getAverageResults(runArg));
+    reports.generate(getAverageResults(runArg, testGroupArg));
   } else {
-    reports.generate(getAllResults());
+    reports.generate(getAllResults(testGroupArg));
   }
 }
 
