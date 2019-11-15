@@ -6,5 +6,8 @@
   },
   "fibonacci": {
     "number": 45
+  },
+  "promises": {
+    "milliseconds": 10000
   }
 }
