@@ -28,10 +28,22 @@ function parseTimeValues(testResults) {
 
   return {
     real: realTime,
-    user: userTime,
-    sys: sysTime,
     cpu: Number((userTime + sysTime).toFixed(3))
   };
+}
+
+function getAverage(results) {
+  var averaged = {};
+
+  ['real', 'cpu'].forEach(type => {
+    var sum = 0;
+
+    results.forEach(result => sum += result[type]);
+
+    averaged[type] = (sum / results.length).toFixed(3);
+  });
+
+  return averaged;
 }
 
 function getAllResults() {
@@ -42,8 +54,32 @@ function getAllResults() {
   };
 }
 
+function getAverageResults(runCount) {
+  var jestResults = [];
+  var jasmineResults = [];
+  var mochaResults = [];
+
+  for (var i = 0; i < runCount; i++) {
+    jestResults.push(parseTimeValues(getTestResults('jest')));
+    jasmineResults.push(parseTimeValues(getTestResults('jasmine')));
+    mochaResults.push(parseTimeValues(getTestResults('mocha')));
+  }
+
+  return {
+    jest: getAverage(jestResults),
+    jasmine: getAverage(jasmineResults),
+    mocha: getAverage(mochaResults)
+  };
+}
+
 function main() {
-  reports.generate(getAllResults());
+  var runArg = Number(process.argv.slice(2)[0]);
+
+  if (runArg && runArg > 1) {
+    reports.generate(getAverageResults(runArg));
+  } else {
+    reports.generate(getAllResults());
+  }
 }
 
 main();
