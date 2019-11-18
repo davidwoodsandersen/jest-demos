@@ -8,10 +8,7 @@ function getTestResults(framework, testGroup) {
 }
 
 function parseTimeString(str) {
-  var minutes = Number(str.replace(/m.+$/, ''));
-  var seconds = Number(str.replace(/^.+m/, '').replace('s', ''));
-
-  return (minutes * 60) + seconds;
+  return Number(str);
 }
 
 function parseTimeValue(type, str) {
@@ -23,7 +20,6 @@ function parseTimeValue(type, str) {
 }
 
 function parseTimeValues(testResults) {
-  console.log(testResults);
   var realTime = parseTimeString(parseTimeValue('real', testResults));
   var userTime = parseTimeString(parseTimeValue('user', testResults));
   var sysTime = parseTimeString(parseTimeValue('sys', testResults));
