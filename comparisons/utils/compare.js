@@ -23,6 +23,7 @@ function parseTimeValue(type, str) {
 }
 
 function parseTimeValues(testResults) {
+  console.log(testResults);
   var realTime = parseTimeString(parseTimeValue('real', testResults));
   var userTime = parseTimeString(parseTimeValue('user', testResults));
   var sysTime = parseTimeString(parseTimeValue('sys', testResults));
