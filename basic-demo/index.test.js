@@ -25,7 +25,6 @@ describe('Expect API', () => {
   });
 });
 
-
 describe('Working with Functions', () => {
   it('Spying', () => {
     const func = jest.fn();
