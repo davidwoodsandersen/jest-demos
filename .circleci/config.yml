@@ -1,6 +1,7 @@
 jobs:
   compare-all:
-    machine: true
+    machine:
+      - image: circleci/node:10.16.3
     steps:
       - checkout
       - run: cd ./comparisons && npm install
