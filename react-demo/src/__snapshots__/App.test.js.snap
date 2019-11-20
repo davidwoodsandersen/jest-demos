@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="App"
+>
+  <h1>
+    React Demo
+  </h1>
+  <div
+    className="TodoList"
+  >
+    <h3>
+      Todo List
+    </h3>
+  </div>
+  <form
+    className="Form"
+    onSubmit={[Function]}
+  >
+    <input
+      type="text"
+    />
+    <button
+      className="Button"
+    >
+      Add Todo
+    </button>
+  </form>
+</div>
+`;

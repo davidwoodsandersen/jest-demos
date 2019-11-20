@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="TodoList"
+>
+  <h3>
+    Todo List
+  </h3>
+  <div
+    className="Todo"
+  >
+    a
+  </div>
+  <div
+    className="Todo"
+  >
+    b
+  </div>
+  <div
+    className="Todo"
+  >
+    c
+  </div>
+</div>
+`;
