@@ -1,0 +1,21 @@
+version: '3'
+services:
+  api-demo:
+    container_name: api-demo
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
+    command: npm run serve
+
+  api-tests:
+    container_name: api-tests
+    build:
+      context: .
+      dockerfile: ./test/Dockerfile
+    depends_on:
+      - api-demo
+    command: ./ops/wait-for-it.sh -t 15 api-demo:3000 -- npm run test
