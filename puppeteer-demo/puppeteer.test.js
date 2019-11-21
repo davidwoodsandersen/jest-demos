@@ -1,9 +1,10 @@
 describe('Google', () => {
-  it('should be titled "Google"', async (done) => {
-    await page
-      .goto('https://google.com')
-      .catch(e => console.log(e));
-    await expect(page.title()).resolves.toMatch('Google');
+  it('should include "google" in text', async (done) => {
+    await page.goto('https://google.com').catch();
+    const text = await page.evaluate(() =>
+      document.body.textContent
+    );
+    expect(text).toContain('google');
     done();
   });
 });
